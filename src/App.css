@@ -1,0 +1,16 @@
+button {
+  border: none;
+}
+
+input {
+  border: 1px solid rgba(156, 156, 156, 0.76);
+}
+
+.hero {
+  background-image: url(./heroSection.jpg);
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
