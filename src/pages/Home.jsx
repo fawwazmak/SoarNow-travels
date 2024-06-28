@@ -30,51 +30,54 @@ const Home = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Start
-            formData={formData}
-            setFormData={setFormData}
-            nextStep={() => nextStep("/AvailableAirlines")}
-          />
-        }
-      />
-      <Route
-        path="/AvailableAirlines"
-        element={
-          <AvailableAirlines
-            formData={formData}
-            setFormData={setFormData}
-            nextStep={() => nextStep("/TravelerInfo")}
-            prevStep={() => prevStep("/")}
-          />
-        }
-      />
-      <Route
-        path="/TravelerInfo"
-        element={
-          <TravelerInfo
-            formData={formData}
-            setFormData={setFormData}
-            prevStep={() => prevStep("/AvailableAirlines")}
-            submitForm={submitForm}
-          />
-        }
-      />
-      <Route
-        path="/SuccessfulBooking"
-        element={
-          <SuccessfulBooking
-            formData={formData}
-            setFormData={setFormData}
-            prevStep={() => prevStep("/AvailableAirlines")}
-            submitForm={submitForm}
-          />
-        }
-      />
-    </Routes>
+    // <Routes>
+    //   <Route
+    //     path="/"
+    //     element={
+    //       <Start
+    //         formData={formData}
+    //         setFormData={setFormData}
+    //         nextStep={() => nextStep("/AvailableAirlines")}
+    //       />
+    //     }
+    //   />
+    //   <Route
+    //     path="/AvailableAirlines"
+    //     element={
+    //       <AvailableAirlines
+    //         formData={formData}
+    //         setFormData={setFormData}
+    //         nextStep={() => nextStep("/TravelerInfo")}
+    //         prevStep={() => prevStep("/")}
+    //       />
+    //     }
+    //   />
+    //   <Route
+    //     path="/TravelerInfo"
+    //     element={
+    //       <TravelerInfo
+    //         formData={formData}
+    //         setFormData={setFormData}
+    //         prevStep={() => prevStep("/AvailableAirlines")}
+    //         submitForm={submitForm}
+    //       />
+    //     }
+    //   />
+    //   <Route
+    //     path="/SuccessfulBooking"
+    //     element={
+    //       <SuccessfulBooking
+    //         formData={formData}
+    //         setFormData={setFormData}
+    //         prevStep={() => prevStep("/AvailableAirlines")}
+    //         submitForm={submitForm}
+    //       />
+    //     }
+    //   />
+    // </Routes>
+
+    <Start />
+    
   );
 };
 
