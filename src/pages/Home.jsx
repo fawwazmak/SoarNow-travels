@@ -75,9 +75,12 @@ const Home = () => {
     //     }
     //   />
     // </Routes>
+    <>
+      <Start />
 
-    <Start />
-    
+
+      
+    </>
   );
 };
 
