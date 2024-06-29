@@ -77,9 +77,7 @@ const Home = () => {
     // </Routes>
     <>
       <Start />
-
-
-      
+      <TravelerInfo />
     </>
   );
 };
