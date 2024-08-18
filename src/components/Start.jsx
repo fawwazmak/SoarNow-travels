@@ -4,7 +4,7 @@ import "../App.css";
 const Start = () => {
   return (
     <>
-      <div className="text-light hero px-5">
+      <div className="text-light hero px-5 bg-primary">
         <div className="">
           <h1 className="text-center w-50 mx-auto">
             Great Deals on Flight Tickets to All Destinations with Mytrip USA
