@@ -77,7 +77,7 @@ const Home = () => {
     // </Routes>
     <>
       <Start />
-      <TravelerInfo />
+      {/* <TravelerInfo /> */}
     </>
   );
 };
