@@ -20,7 +20,7 @@ const Start = () => {
           </h1>
         </div>
 
-       <form action="" method="post" className="bg-white p-4 rounded">
+       <form action="" method="post" id="form" className="bg-white p-4 rounded mx-auto">
 
         {/* Travel type  */}
         <div className="d-flex gap-3 flex-sm-row flex-column">
@@ -42,21 +42,21 @@ const Start = () => {
 
         {(travelType !== 'multiCity') && 
           <>
-              <div>
-                <div className="text-dark">
+              <div className="text-dark row g-3 mt-3">
+                <div className="col-lg-9">
                   <div className="d-flex flex-lg-row flex-column gap-lg-5 gap-2">
                     <div className="w-100">
                       <label htmlFor="startingLocation">From</label>
                       <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
                         <LuArrowUpRightFromCircle />
-                        <input className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
+                        <input required className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
                       </div>
                     </div>
                     <div className="w-100">
                       <label htmlFor="stoppingLocation">To</label>
                       <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
                         <LuArrowDownToDot />
-                        <input className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
+                        <input required className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
                       </div>
                     </div>
                   </div>
@@ -69,29 +69,33 @@ const Start = () => {
                         <label htmlFor="departureDate">Departure</label>
 
                         <div className="border-1 border-dark border py-2 px-2">
-                          <input className="border-0 w-100" type="date" name="departureDate" id="departureDate" />
+                          <input required className="border-0 w-100" type="date" name="departureDate" id="departureDate" />
                         </div>
                       </div>
 
-                      {/* Return date  */}
-                      <div className="w-100">
-                        <label htmlFor="returnDate">Return</label>
+                      { (travelType === 'return') &&
+                        <>
+                          {/* Return date  */}
+                          <div className="w-100">
+                            <label htmlFor="returnDate">Return</label>
 
-                        <div className="border-1 border-dark border py-2 px-2">
-                          <input className="border-0 w-100" type="date" name="returnDate" id="returnDate" />
-                        </div>
-                      </div>
+                            <div className="border-1 border-dark border py-2 px-2">
+                              <input required className="border-0 w-100" type="date" name="returnDate" id="returnDate" />
+                            </div>
+                          </div>
+                        </>
+                      }
                     </div>
 
                     {/* Passengers and class  */}
-                    <div className="d-flex w-100">
+                    <div className="d-flex gap-2 gap-lg-0 flex-column flex-lg-row w-100">
 
                       {/* Number of passengers  */}
                       <div className="w-100">
                         <label htmlFor="passengers">Passengers</label>
 
                         <div className="border-1 border-dark border p-2">
-                          <input className="border-0 w-100" type="text" name="passengers" id="passengers" />
+                          <input required className="border-0 w-100" type="text" name="passengers" id="passengers" />
                         </div>
                       </div>
 
@@ -100,7 +104,7 @@ const Start = () => {
                         <label htmlFor="travelClass">Class</label>
 
                         <div className="border-1 border-dark border p-2">
-                          <select name="travelClass" id="travelClass" className="border-0 w-100">
+                          <select name="travelClass" id="travelClass" className="border-0 w-100" required>
                             <option value="economy">Economy</option>
                             <option value="premium">Premium</option>
                             <option value="business">Business</option>
@@ -111,7 +115,16 @@ const Start = () => {
                     </div>
                   </div>
                 </div>
-                <div></div>
+
+                {/* Checkbox and submit buton  */}
+                <div className="col d-flex flex-column flex-lg-column-reverse gap-2 gap-lg-0 justify-content-lg-between">
+                  <div className="d-flex gap-2">
+                    <input className="" style={{height: "25px", width: "25px"}} type="checkbox" name="nonStopFlight" id="nonStopFlight" />
+                    <label htmlFor="nonStopFlight">Nonstop Flights only</label>
+                  </div>
+
+                  <input className="border-0 py-2 bg-success text-white rounded-3" type="submit" value="Search Flights" />
+                </div>
               </div>
           </>
           
