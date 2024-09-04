@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { LuArrowDownToDot } from "react-icons/lu";
+import { FaXmark } from "react-icons/fa6";
 import Button from "./Button";
 
 const Start = () => {
@@ -43,7 +44,7 @@ const Start = () => {
         {(travelType !== 'multiCity') && 
           <>
               <div className="text-dark row g-3 mt-3">
-                <div className="col-lg-9">
+                <div className="col-lg-9 ">
                   <div className="d-flex flex-lg-row flex-column gap-lg-5 gap-2">
                     <div className="w-100">
                       <label htmlFor="startingLocation">From</label>
@@ -61,7 +62,7 @@ const Start = () => {
                     </div>
                   </div>
 
-                  <div className="d-flex flex-lg-row flex-column gap-lg-5 gap-2">
+                  <div className="d-flex flex-lg-row flex-column gap-lg-5 gap-2 mt-lg-4 mt-2">
                     {/* Deaparture and return  */}
                     <div className="d-flex w-100">
                       {/* DepartTure date  */}
@@ -128,6 +129,129 @@ const Start = () => {
               </div>
           </>
           
+        }
+
+        {(travelType === 'multiCity') &&
+          <>
+            <div className="text-dark">
+              <div>
+                <div className="d-flex flex-column gap-4 w-100">
+                  <div>
+                    <h3>Trip</h3>
+                    <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-4">
+                      <div className="w-100">
+                        <label htmlFor="startingLocation">From</label>
+                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                          <LuArrowUpRightFromCircle />
+                          <input required className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
+                        </div>
+                      </div>
+
+
+                      <div className="w-100">
+                        <label htmlFor="stoppingLocation">To</label>
+                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                          <LuArrowDownToDot />
+                          <input required className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
+                        </div>
+                      </div>
+
+
+                      {/* DepartTure date  */}
+                      <div className="w-100">
+                        <label htmlFor={`departureDate${1}`}>Departure</label>
+
+                        <div className="border-1 border-dark border py-2 px-2">
+                          <input required className="border-0 w-100" type="date" name={`departureDate${1}`} id={`departureDate${1}`} />
+                        </div>
+                      </div>
+
+                      <FaXmark className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <h3>Trip</h3>
+                    <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-4">
+                      <div className="w-100">
+                        <label htmlFor="startingLocation">From</label>
+                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                          <LuArrowUpRightFromCircle />
+                          <input required className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
+                          </div>
+                      </div>
+
+
+                      <div className="w-100">
+                        <label htmlFor="stoppingLocation">To</label>
+                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                          <LuArrowDownToDot />
+                          <input required className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
+                        </div>
+                      </div>
+
+
+                      {/* DepartTure date  */}
+                      <div className="w-100">
+                        <label htmlFor={`departureDate${1}`}>Departure</label>
+
+                        <div className="border-1 border-dark border py-2 px-2">
+                          <input required className="border-0 w-100" type="date" name={`departureDate${1}`} id={`departureDate${1}`} />
+                        </div>
+                      </div>
+
+                      <FaXmark className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3>Trip</h3>
+                    <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-4">
+                      <div className="w-100">
+                        <label htmlFor="startingLocation">From</label>
+                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                          <LuArrowUpRightFromCircle />
+                          <input required className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
+                          </div>
+                      </div>
+
+
+                      <div className="w-100">
+                        <label htmlFor="stoppingLocation">To</label>
+                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                          <LuArrowDownToDot />
+                          <input required className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
+                        </div>
+                      </div>
+
+
+                      {/* DepartTure date  */}
+                      <div className="w-100">
+                        <label htmlFor={`departureDate${1}`}>Departure</label>
+
+                        <div className="border-1 border-dark border py-2 px-2">
+                          <input required className="border-0 w-100" type="date" name={`departureDate${1}`} id={`departureDate${1}`} />
+                        </div>
+                      </div>
+                      
+                      <FaXmark className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* <div> */}
+                {/* </div> */}
+              </div>
+
+
+
+              {/* Non stop flights, passengers, flight class and submit button  */}
+              <div></div>
+            </div>
+          </>
+
         }
 
         <small className="text-success ">**( Specify Passenger(s): adult, children, infant )</small>
