@@ -3,14 +3,32 @@ import "../App.css";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { LuArrowDownToDot } from "react-icons/lu";
 import { FaXmark } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa";
 import Button from "./Button";
 
 const Start = () => {
   const [travelType, setTravelType] = useState("return");
+  const [tripCount, setTripCount] = useState(2);
+  const [moreTrip, setMoreTrip] = useState([]);
+  const [additionalTrip, setAdditionalTrip] = useState(0);
 
   const travelTypeChange = (e) => {
     setTravelType(e.target.value)
   }
+
+  const increaseTrip = () => {
+    setTripCount((prevTripCount) => prevTripCount + 1);
+    setAdditionalTrip((prevAdditionalTrip) => + 1)
+    setMoreTrip((prevTrip) => [...prevTrip, {id: additionalTrip, }])
+  }
+
+  const decreaseTrip = () => {
+    setTripCount((prevTripCount) => prevTripCount - 1);
+    setAdditionalTrip((prevAdditionalTrip) => - 1)
+    setMoreTrip((prevTrip) => prevTrip.slice(0, prevTrip.length -1))
+  }
+
+
 
   return (
     <>
@@ -128,12 +146,11 @@ const Start = () => {
                 </div>
               </div>
           </>
-          
         }
 
         {(travelType === 'multiCity') &&
           <>
-            <div className="text-dark">
+            <div className="text-dark mb-3">
               <div>
                 <div className="d-flex flex-column gap-4 w-100">
                   <div>
@@ -166,7 +183,7 @@ const Start = () => {
                         </div>
                       </div>
 
-                      <FaXmark className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
+                      <div className="align-self-end rounded-3 p-3 d-lg-block d-none" style={{width: "60px", height: "50px"}}></div>
                     </div>
                   </div>
 
@@ -201,51 +218,65 @@ const Start = () => {
                         </div>
                       </div>
 
-                      <FaXmark className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
+                      <div className="align-self-end rounded-3 p-3 d-lg-block d-none" style={{width: "60px", height: "50px"}}></div>
 
                     </div>
                   </div>
 
+                  {/* Additional Trip  */}
                   <div>
-                    <h3>Trip</h3>
-                    <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-4">
-                      <div className="w-100">
-                        <label htmlFor="startingLocation">From</label>
-                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
-                          <LuArrowUpRightFromCircle />
-                          <input required className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
+                    {(tripCount > 2) && 
+                      moreTrip.map((moreTrip, index)=>
+                      <>
+                        <div className="mt-4" key={moreTrip.id}>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <h3>Trip</h3>
+                            <p className="d-block d-lg-none" onClick={decreaseTrip}>Remove</p>
                           </div>
-                      </div>
+                          <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-4">
+                            <div className="w-100">
+                              <label htmlFor="startingLocation">From</label>
+                              <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                                <LuArrowUpRightFromCircle />
+                                <input required className="border-0 w-100" type="text" name="startingLocation" id="startingLocation" />
+                                </div>
+                            </div>
 
 
-                      <div className="w-100">
-                        <label htmlFor="stoppingLocation">To</label>
-                        <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
-                          <LuArrowDownToDot />
-                          <input required className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
+                            <div className="w-100">
+                              <label htmlFor="stoppingLocation">To</label>
+                              <div className="border border-1 border-dark px-2 py-2 d-flex align-items-center">
+                                <LuArrowDownToDot />
+                                <input required className="border-0 w-100" type="text" name="stoppingLocation" id="stoppingLocation" />
+                              </div>
+                            </div>
+
+
+                            {/* DepartTure date  */}
+                            <div className="w-100">
+                              <label htmlFor={`departureDate${1}`}>Departure</label>
+
+                              <div className="border-1 border-dark border py-2 px-2">
+                                <input required className="border-0 w-100" type="date" name={`departureDate${1}`} id={`departureDate${1}`} />
+                              </div>
+                            </div>
+                            
+                            <FaXmark onClick={decreaseTrip} className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
+                          </div>
                         </div>
-                      </div>
+                      </>
+                      )
+                    }
+                  </div>
 
-
-                      {/* DepartTure date  */}
-                      <div className="w-100">
-                        <label htmlFor={`departureDate${1}`}>Departure</label>
-
-                        <div className="border-1 border-dark border py-2 px-2">
-                          <input required className="border-0 w-100" type="date" name={`departureDate${1}`} id={`departureDate${1}`} />
-                        </div>
-                      </div>
-                      
-                      <FaXmark className="border border-2 border-dark align-self-end rounded-3 p-2 d-lg-block d-none" style={{width: "60px", height: "50px"}} />
-                    </div>
+                  <div className="d-flex gap-4 align-items-center justify-content-center py-1 border border-2 border-success w-25 rounded-5" onClick={increaseTrip}>
+                    <FaPlus />
+                    <p className="m-0 fw-5 fs-4">Add Trip</p>
                   </div>
                 </div>
                 
-                {/* <div> */}
-                {/* </div> */}
+                
               </div>
-
-
 
               {/* Non stop flights, passengers, flight class and submit button  */}
               <div></div>
