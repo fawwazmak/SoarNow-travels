@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { LuArrowDownToDot } from "react-icons/lu";
@@ -11,6 +11,8 @@ const Start = () => {
   const [tripCount, setTripCount] = useState(2);
   const [moreTrip, setMoreTrip] = useState([]);
   const [additionalTrip, setAdditionalTrip] = useState(0);
+  const [isTablet, setIsTablet] = useState(false);
+
 
   const travelTypeChange = (e) => {
     setTravelType(e.target.value)
@@ -29,7 +31,30 @@ const Start = () => {
   }
 
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 992px)');
 
+
+    setIsTablet(mediaQuery.matches);
+
+    const handleMediaChange = (e) => {
+      setIsTablet(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    
+    return () => mediaQuery.removeEventListener('change', handleMediaChange);
+  }, [])
+
+  const styles = {
+    passenClass: {
+      width: isTablet ? '100%' : '50%',
+    },
+    multiCitySearchButton : {
+      width: isTablet ? '100%' : '20%',
+    }
+  }
   return (
     <>
       <div className="text-light hero px-5 bg-primary py-5">
@@ -228,7 +253,7 @@ const Start = () => {
                     {(tripCount > 2) && 
                       moreTrip.map((moreTrip, index)=>
                       <>
-                        <div className="mt-4" key={moreTrip.id}>
+                        <div className="mt-2" key={moreTrip.id}>
                           <div className="d-flex justify-content-between align-items-center">
                             <h3>Trip</h3>
                             <p className="d-block d-lg-none" onClick={decreaseTrip}>Remove</p>
@@ -274,12 +299,43 @@ const Start = () => {
                     <p className="m-0 fw-5 fs-4">Add Trip</p>
                   </div>
                 </div>
-                
-                
               </div>
 
               {/* Non stop flights, passengers, flight class and submit button  */}
-              <div></div>
+              <div className="mt-3 d-flex flex-column flex-lg-row align-items-center gap-5">
+                <div className="d-flex align-items-center gap-2">
+                  <input className="" style={{height: "25px", width: "25px"}} type="checkbox" name="nonStopFlight" id="nonStopFlight" />
+                  <label htmlFor="nonStopFlight">Nonstop Flights only</label>
+                </div>
+
+
+                <div className="ms-lg-auto d-flex gap-2 gap-lg-0 flex-column flex-lg-row" style={styles.passenClass}>
+
+                  {/* Number of passengers  */}
+                  <div className="w-100">
+                    <label htmlFor="passengers">Passengers</label>
+                    <div className="border-1 border-dark border p-2">
+                      <input required className="border-0 w-100" type="text" name="passengers" id="passengers" />
+                    </div>
+                  </div>
+
+                  {/* Travel class  */}
+                  <div className="w-100">
+                    <label htmlFor="travelClass">Class</label>
+
+                    <div className="border-1 border-dark border p-2">
+                      <select name="travelClass" id="travelClass" className="border-0 w-100" required>
+                        <option value="economy">Economy</option>
+                        <option value="premium">Premium</option>
+                        <option value="business">Business</option>
+                        <option value="first">First</option>
+                    </select>
+                  </div>
+                </div>
+                </div>
+
+                <div style={styles.multiCitySearchButton} className="ms-lg-auto"><input className="border-0 py-3 d-lg-inline d-block w-100 bg-success text-white rounded-3" type="submit" value="Search Flights" /></div>
+              </div>
             </div>
           </>
 

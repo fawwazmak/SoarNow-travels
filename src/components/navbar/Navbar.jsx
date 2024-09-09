@@ -7,7 +7,7 @@ const NavScrollExample = () => {
     <>
       <Navbar
         expand="lg"
-        className="bg-body-tertiary position-sticky top-0 w-100"
+        className="bg-body-tertiary position-sticky top-0 w-100 z-3"
       >
         <Container fluid>
           <Navbar.Brand>
